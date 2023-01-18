@@ -10,5 +10,9 @@ For an example run try the following.
 
 ``` cd 23jan05-07aug01/ ```
 
-``` ./run ```
+``` octave ```
+
+and once you've started octave, 
+
+``` run ```
 
