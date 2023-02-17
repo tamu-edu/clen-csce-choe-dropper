@@ -32,6 +32,7 @@
 #	params.ray_interval  : angle between rays
 #	params.obj_size      : diameter of the ball
 #
+#	params.obj_sep       : how far to separate the objects (default = 5)
 #
 #	returns:
 #		gene_pool: array of all individuals (network weights)
@@ -74,6 +75,12 @@ recurrent_flag = 0; # unused, for now
 # other constants
 #----------------------------------------
 #input_count = rows(rawinput);
+
+if (params.obj_sep)
+  obj_sep = params.obj_sep
+else
+  obj_sep = 5
+end
 
 #----------------------------------------
 # setup bias
@@ -128,7 +135,7 @@ fflush(stdout);
 dist_gran = params.arena_size/10;
 if (test_mode==1)
   rand_pos = -round(rand(params.num_drops,1)*loc_max/2);
-  obj_list = [rand_pos,rand_pos+5*dist_gran/1.5];
+  obj_list = [rand_pos,rand_pos+obj_sep*dist_gran/1.5];
 else
   rand_pos = -round(rand(params.num_drops,1)*loc_max/2);
   obj_list = [rand_pos,rand_pos+round((rem((1:params.num_drops)',5)+1)*dist_gran/1.5)];
